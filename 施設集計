@@ -1,0 +1,77 @@
+import pyautogui
+import pyperclip
+import time
+import pandas as pd
+import sys
+import tkinter as tk
+
+
+df = pd.read_excel('施設KW.xlsx',engine='openpyxl')
+res = pyautogui.confirm(text= '入力準備OK?',title = '確認', buttons=['OK','キャンセル'])
+if res =='OK':
+  time.sleep(2)
+else:
+  sys.exit()
+
+
+pyautogui.leftClick(1773,92)
+pyautogui.write('15')
+pyautogui.press("enter")
+pyautogui.write('15')
+pyautogui.press("enter")
+
+
+pyautogui.press("enter")
+time.sleep(1)
+pyautogui.leftClick(449,46)
+time.sleep(1)
+pyautogui.leftClick(1056,99,interval=4)
+
+
+# メインウィンドウを作成
+baseGround = tk.Tk()
+# ウィンドウのサイズを設定
+baseGround.geometry('400x200')
+# 画面タイトル
+baseGround.title('年月を入力')
+
+# ラベル
+label1 = tk.Label(text='例)202209')
+label1.place(x=30, y=40)
+
+
+# テキストボックス
+textBox1 = tk.Entry(width=40)
+textBox1.place(x=30, y=60)
+
+def val():
+    # テキストボックスの値を取得
+    num = textBox1.get()
+    pyautogui.leftClick(238,215)
+    pyautogui.write(num)
+    time.sleep(1)
+    pyautogui.leftClick(264,917)
+    pyautogui.write(num)
+    
+# ボタンの作成と配置
+button = tk.Button(baseGround,
+                text = 'OK',
+                # クリック時にval()関数を呼ぶ
+                command = val
+                ).place(x=30, y=120)
+
+baseGround.mainloop()
+
+
+
+pyautogui.leftClick(303,255)
+
+
+for i,r in df.iterrows():
+  pyperclip.copy(str(r['キーワード']))
+  pyautogui.hotkey('ctrl','v')
+  pyautogui.press("enter")
+
+
+
+
