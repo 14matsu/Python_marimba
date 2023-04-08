@@ -1,0 +1,33 @@
+import pyautogui
+import pyperclip
+import time
+import pandas as pd
+import sys
+
+df = pd.read_excel('2023.3.31棚卸し.xlsm',sheet_name='Twins棚卸表',engine='openpyxl')
+res = pyautogui.confirm(text= '入力準備OK?',title = '確認', buttons=['OK','キャンセル'])
+if res =='OK':
+  time.sleep(4)
+else:
+  sys.exit()
+ 
+for i,r in df.iterrows():
+  pyperclip.copy(str(r['棚卸し日']))
+  pyautogui.press("backspace")
+  pyautogui.hotkey('ctrl','v')
+  pyautogui.press("down")
+
+pyautogui.press("enter")
+pyautogui.press("enter")
+pyautogui.press("enter")
+pyautogui.press("enter")
+pyautogui.press("enter")
+pyautogui.press("right")
+pyautogui.press("right")
+
+
+for i,r in df.iterrows():
+  pyperclip.copy(str(r['Twinsに記載する合計']))
+  pyautogui.press("backspace")
+  pyautogui.hotkey('ctrl','v')
+  pyautogui.press("down")
