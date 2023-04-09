@@ -11,19 +11,28 @@ if res =='OK':
 else:
   sys.exit()
  
-for i,r in df.iterrows():
-  pyperclip.copy(str(r['棚卸し日']))
-  pyautogui.press("backspace")
-  pyautogui.hotkey('ctrl','v')
-  pyautogui.press("down")
 
+
+pyperclip.copy(str(df.at[df.index[1],'棚卸し日']))
+pyautogui.press("backspace")
+pyautogui.hotkey('ctrl','v')
 pyautogui.press("enter")
 pyautogui.press("enter")
-pyautogui.press("enter")
-pyautogui.press("enter")
-pyautogui.press("enter")
-pyautogui.press("right")
-pyautogui.press("right")
+
+#for i,r in df.iterrows():
+#  pyperclip.copy(str(r['棚卸し日']))
+#  pyautogui.press("backspace")
+#  pyautogui.hotkey('ctrl','v')
+#  pyautogui.press("down")
+
+#pyautogui.press("enter")
+#pyautogui.press("enter")
+#pyautogui.press("enter")
+#pyautogui.press("enter")
+#pyautogui.press("enter")
+#time.sleep(5)
+#pyautogui.press("right")
+#pyautogui.press("right")
 
 
 for i,r in df.iterrows():
